@@ -12,6 +12,8 @@
 # IDEs and editors
 /.idea
 .project
+*.sublime-project
+*.sublime-workspace
 .classpath
 *.launch
 .settings/
