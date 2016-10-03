@@ -22,7 +22,6 @@
 				product.price++;
 				console.log(product.price);
 			});
-		
 		}
 	}
 

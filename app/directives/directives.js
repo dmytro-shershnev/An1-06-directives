@@ -9,7 +9,7 @@
         .directive("unorderedList4", unorderedList4)
         .directive("unorderedList5", unorderedList5)
         .directive("unorderedListAttrs", unorderedListAttrs)
-        .//directive("unorderedListScope", unorderedListScope)
+        .directive("unorderedListScope", unorderedListScope)
     ;
 
     function unorderedList1() {
@@ -17,7 +17,7 @@
             let data = scope.products;
 
             angular.forEach(data, (dataItem) => {
-                //console.log(`Item: ${dataItem.name}`);
+                console.log(`Item: ${dataItem.name}`);
             });
         };
     }
@@ -28,7 +28,7 @@
                 let data = scope.products;
                 
                 angular.forEach(data, (dataItem) => {
-                    //console.log(`Item: ${dataItem.name}`);
+                    console.log(`Item: ${dataItem.name}`);
                 });
             }
         };
@@ -60,7 +60,7 @@
                     // console.log(`Item: ${dataItem[propertyName]}`);
                     // console.log(`Item: ${scope.$eval(propertyName, dataItem)}`);
                     listElem.append(angular.element("<li>")
-                                            .text(scope.$eval(propertyName, dataItem)));
+                                        .text(scope.$eval(propertyName, dataItem)));
                 });
 
                 element.append(listElem);
@@ -101,29 +101,68 @@
     function unorderedListAttrs() {
         return {
             link: function(scope, element, attrs) {
-                let data = scope[attrs["unorderedList5"]];
-                let propertyName = attrs["listProperty"];
+                let data = scope[attrs["unorderedListAttrs"]];
 
-                let listElem = angular.element("<ul>");
+                attrs.$observe("listProperty", (newVal, oldVal) => {
+                    element.html("");
 
-                angular.forEach(data, (dataItem) => {
-                    // console.log(`Item: ${dataItem[propertyName]}`);
-                    // console.log(`Item: ${scope.$eval(propertyName, dataItem)}`);
-                    // listElem.append(angular.element("<li>")
-                    //                         .text(scope.$eval(propertyName, dataItem)));
-                    let itemElem = angular.element("<li>");
-                    listElem.append(itemElem);
+                    let propertyName = newVal;
 
-                    let watcherFn = function(watchScope) {
-                        return watchScope.$eval(propertyName, dataItem);
-                    };
+                    let listElem = angular.element("<ul>");
 
-                    scope.$watch(watcherFn, (newVal, oldVal) => {
-                        itemElem.text(newVal);
+                    angular.forEach(data, (dataItem) => {
+                        let itemElem = angular.element("<li>");
+                        listElem.append(itemElem);
+
+                        let watcherFn = function(watchScope) {
+                            return watchScope.$eval(propertyName, dataItem);
+                        };
+
+                        scope.$watch(watcherFn, (newVal, oldVal) => {
+                            itemElem.text(newVal);
+                        });
                     });
-                });
 
-                element.append(listElem);
+                    element.append(listElem);
+                });
+            }
+        };
+    }
+
+    function unorderedListScope() {
+        return {
+            scope: {
+                unorderedListScope: "=",
+                listProperty: "="
+            },
+
+            link: function(scope, element, attrs) {
+                // let data = scope[attrs["unorderedListAttrs"]];
+                let data = scope.unorderedListScope;
+
+                // attrs.$observe("listProperty", (newVal, oldVal) => {
+                scope.$watch("listProperty", (newVal, oldVal) => {
+                    element.html("");
+
+                    let propertyName = newVal;
+
+                    let listElem = angular.element("<ul>");
+
+                    angular.forEach(data, (dataItem) => {
+                        let itemElem = angular.element("<li>");
+                        listElem.append(itemElem);
+
+                        let watcherFn = function(watchScope) {
+                            return watchScope.$eval(propertyName, dataItem);
+                        };
+
+                        scope.$watch(watcherFn, (newVal, oldVal) => {
+                            itemElem.text(newVal);
+                        });
+                    });
+
+                    element.append(listElem);
+                });
             }
         };
     }
