@@ -15,6 +15,8 @@
 		$scope.getCity = userData.getCity;
 
 		$scope.dataSource = "controller";
+
+		// $scope.name = "Default Value";
 	}
 
 })();

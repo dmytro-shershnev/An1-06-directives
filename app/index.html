@@ -31,15 +31,102 @@
 			<!-- <button ng-click="incrementPrices()" class="btn btn-primary">Change Prrice</button> -->
 
 			<!-- Task 05 -->
-			<select ng-model="data.field">
+			<!-- <select ng-model="data.field">
 				<option value="name">Name</option>
 				<option value="price | currency">Price</option>
 				<option value="category">Category</option>
 			</select>
 
 			<div unordered-list-attrs="products" list-property="{{data.field}}"></div>
-			<div unordered-list-scope="products" list-property="data.field"></div>
+			<div unordered-list-scope="products" list-property="data.field"></div> -->
+
+			<!-- Task 06 -->
+			<!-- <div class="panel-body">
+				<h5>Директива как элемент</h5>
+				<unordered-list6 list-source="products" list-property="price | currency" />
+			</div>
+
+			<div class="panel-body">
+				<h5>Директива как атрибут</h5>
+				<div unordered-list6="products" list-property="price | currency"></div>
+			</div>
+
+			<div class="panel-body">
+				<h5>Директива как класс</h5>
+				<div class="unordered-list6: products" list-property="price | currency"></div>
+			</div> -->
+
+			<!-- Task 07 -->
+			<!-- <div unordered-list7="products"></div> -->
+			<!-- <div unordered-list8="products"></div> -->
+			<!-- <div unordered-list9="products"></div> -->
+			<!-- <div unordered-list10="products"></div> -->
+			<!-- <div unordered-list11="products"></div> -->
+			<!-- <div unordered-list12="products" template="table"></div> -->
+
+			<!-- Task 08, 09, 10, 11 -->
+			<!-- <div scope-demo-false ng-controller="Default"></div>
+			<div scope-demo-false ng-controller="Second"></div> -->
+
+			<!-- <div scope-demo-true></div>
+			<div scope-demo-true></div> -->
+
+			<!-- <div scope-demo-isolated></div> -->
+
+			<!-- Task 12 -->
+			<!-- <component decor1 decor2 /> -->
+
+			<!-- Task 13 -->
+			<!-- Value in Default Controller -->
+			<!-- <input type="text" ng-model="data.name"> -->
+			<!-- <div scope-demo-isolated1 prop="data.name"></div> -->
+			<!-- <div scope-demo-isolated2 prop="data.name"></div> -->
+			<!-- <div scope-demo-isolated2></div> -->
+
+			<!-- Однонаправленная (примитив) -->
+			<!-- <input type="text" ng-model="name">
+			<div scope-demo-isolated3 prop="name"></div> -->
+
+			<!-- Однонаправленная (объект) -->
+			<!-- <input type="text" ng-model="data.name"> -->
+			<!-- <div scope-demo-isolated3 prop="data"></div> -->
+
+			<!-- <div scope-demo-isolated4 prop="data.name" city="getCity(data.name)"></div> -->
+			<!-- <div scope-demo-isolated4 city="getCity(userName)"></div> -->
+
+			<!-- Task 14-->
+			<!-- <greeting1></greeting1> -->
+			<!-- <greeting2></greeting2> -->
+			<!-- <greeting3 ctrl="Greeting"></greeting3> -->
+			<!-- <div scope-demo-isolated5 prop="1"></div> -->
+
+			<!-- Task 15 -->
+			<!-- <greeting4 hi hello /> -->
+
+			<!-- Task 16 -->
+			<!-- <greeting5>
+				<div hi2 hello2></div>
+			</greeting5> -->
+
+			<!-- Task 17 -->
+			<p>Task 17</p>
+			<greeting6>
+				<div hi3 hello3></div>
+			</greeting6>
+
+			<!-- Task 18 -->
+			<p>Task 18</p>
+			<greeting4 hello hi />
 		</div>
+
+			<!-- Task 19 -->
+			<div class="row">
+				<p>Task 19</p>
+				<p multi-elem-start="item in [0, 1, 2, 3, 4, 5]">Lorem</p>
+				<h3>Title</h3>
+				<div multi-elem-end>Content</div>
+			</div>
+
 	</div>
 
 	<!-- libs and frameworks -->
@@ -53,6 +140,12 @@
 	<script src="services/productsData.js"></script>
 	<script src="services/userData.js"></script>
 	<script src="directives/directives.js"></script>
+
+	<script id="listTemplate" type="text/template">
+		<ul>
+			<li ng-repeat="item in data">{{item.price | currency}}</li>
+		</ul>
+	</script>
 </body>
 </html>
 
